@@ -1,2 +1,2 @@
 # wow-interface
-my personal wow class help function
+My personal wow's class weakauras trigger.
