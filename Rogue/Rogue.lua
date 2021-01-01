@@ -5,8 +5,8 @@ function CanReRoll(event, ...)
     if not (event == 'SPELL_UPDATE_USABLE' and spellID == 315508) and not event == "PLAYER_AURAS_CHANGED" then
         return false
     end
-    local rogueBuffID = { ["attackspeed"] = 193358, ["shadowstrike"] = 199603, ["cooldown"] = 193359, ["pistolcrit"] = 193357,["energy"] = 199600,["combopoint"] = 193356,}
-    local HasBuff = { ["attackspeed"] = false, ["shadowstrike"] = false, ["cooldown"] = false, ["pistolcrit"] = false, ["energy"] = false, ["combopoint"] = false,}
+    local rogueBuffID = { ["grand melee"] = 193358, ["Skull and Crossbones"] = 199603, ["True Bearing"] = 193359, ["Ruthless Precision"] = 193357,["energy"] = 199600,["Broadside"] = 193356,}
+    local HasBuff = { ["grand melee"] = false, ["Skull and Crossbones"] = false, ["True Bearing"] = false, ["Ruthless Precision"] = false, ["energy"] = false, ["Broadside"] = false,}
     local iBuffCount = 0
     local buffDurations, i = { }, 1
     local exist, _, _, _, duration, _, _, _,_, buffID = UnitBuff("player", i)
@@ -28,11 +28,10 @@ function CanReRoll(event, ...)
     end
     --垃圾Buff
     if iBuffCount == 1 then
-        if HasBuff["attackspeed"] or HasBuff["energy"] then
+        if HasBuff["grand melee"] or HasBuff["energy"] then
             return true
         end
     end
-    
     return false
 end
 
@@ -51,4 +50,16 @@ function CanHeadShot()
     return true
 end
 --- Outlaw End---
+
+function OnUnitAdd(event, unitID)
+    if not event == "NAME_PLATE_UNIT_ADDED" then
+        return
+    end
+end
+
+function OnUnitRemove(event, unitID)
+    if not event == "NAME_PLATE_UNIT_REMOVED" then
+        return
+    end
+end
 
