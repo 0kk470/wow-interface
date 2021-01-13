@@ -35,16 +35,16 @@ function IsRequiringHelp()
         end
     end
     DEFAULT_CHAT_FRAME:AddMessage("enemyCount: " .. enemyCount .. ", allyCount: " .. allyCount)
-    return allyCount < enemyCount, allyCount, enemyCount
+    return allyCount <= enemyCount, allyCount, enemyCount
 end
 
 function SendBattleHelpMessage(allyCount, enemyCount)
     local myName = UnitName("player")
-    local zoneName = GetZoneText()
+    local zoneName = GetMinimapZoneText()
     local myhp = UnitHealth("player")
     local myhpMax = UnitHealthMax("player")
     local HealthPercent = ( UnitHealth("player")/UnitHealthMax("player")) * 100
-    local msg = string.format("提示:【%s】当前生命值%.1f%% || 所在区域:【%s】|| 【友方玩家数量:%d, 敌方玩家数量:%d",myName, HealthPercent, zoneName, allyCount, enemyCount)
+    local msg = string.format("提示:【%s】正在交战，当前生命值%.1f%% || 所在区域:【%s】|| 【友方玩家数量:%d, 敌方玩家数量:%d",myName, HealthPercent, zoneName, allyCount, enemyCount)
     --DEFAULT_CHAT_FRAME:AddMessage(msg)
     SendChatMessage(msg , "BATTLEGROUND"); 
 end
